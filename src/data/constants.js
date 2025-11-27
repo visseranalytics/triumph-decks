@@ -129,7 +129,7 @@ export const TESTIMONIALS = [
     id: '1',
     name: 'Sarah Jenkins',
     location: 'Portland, OR',
-    text: 'Summit Decks transformed our backyard into a stunning oasis. The team was professional, clean, and the craftsmanship is top-notch.',
+    text: 'Triumph Decks transformed our backyard into a stunning oasis. The team was professional, clean, and the craftsmanship is top-notch.',
     rating: 5
   },
   {

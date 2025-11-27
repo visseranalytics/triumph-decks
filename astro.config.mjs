@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://summitdecks.com',
+  site: 'https://triumphdecks.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
