@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { IMAGES } from '../../data/constants.js';
+---
+
+<Layout title="Projects">
+  <PageHero
+    title="Project Gallery"
+    subtitle="Explore our portfolio of custom engineered decks and outdoor living spaces."
+    backgroundImage="https://images.unsplash.com/photo-1679797878543-66c1e502d413?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0"
+    breadcrumbs={[{ label: 'Projects', path: '/projects' }]}
+  />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Bold Filter Controls -->
+    <div class="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in-up">
+      <button
+        data-filter="all"
+        class="filter-btn active px-8 py-3 rounded-sm text-sm font-bold uppercase tracking-widest transition-all duration-300 border-2 bg-wood-600 text-white border-wood-600 shadow-xl scale-105"
+      >
+        All Projects
+      </button>
+      <button
+        data-filter="deck"
+        class="filter-btn px-8 py-3 rounded-sm text-sm font-bold uppercase tracking-widest transition-all duration-300 border-2 bg-white text-slate-800 border-slate-200 hover:border-wood-600 hover:text-wood-600"
+      >
+        Decks & Railings
+      </button>
+      <button
+        data-filter="patio"
+        class="filter-btn px-8 py-3 rounded-sm text-sm font-bold uppercase tracking-widest transition-all duration-300 border-2 bg-white text-slate-800 border-slate-200 hover:border-wood-600 hover:text-wood-600"
+      >
+        Patios & Covers
+      </button>
+    </div>
+
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {IMAGES.map((img) => (
+        <a
+          href={`/projects/${img.id}`}
+          class="project-card group block relative h-[450px] overflow-hidden bg-slate-900 animate-fade-in"
+          data-category={img.category}
+        >
+          <img
+            src={img.url}
+            alt={img.title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-60"
+          />
+          <!-- Overlay Content -->
+          <div class="absolute inset-0 p-8 flex flex-col justify-end">
+            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <div class="w-12 h-1 bg-wood-500 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span class="text-wood-400 font-bold uppercase tracking-[0.2em] text-xs mb-2 block shadow-black drop-shadow-md">{img.category}</span>
+              <h3 class="text-white text-3xl font-serif font-bold uppercase leading-none shadow-black drop-shadow-lg">{img.title}</h3>
+            </div>
+          </div>
+
+          <!-- Hover Border Effect -->
+          <div class="absolute inset-0 border-4 border-wood-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        </a>
+      ))}
+    </div>
+
+    <div id="no-results" class="hidden text-center py-20 bg-slate-50 border-2 border-dashed border-slate-200">
+      <p class="text-slate-400 font-bold uppercase">No projects found in this category.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  const noResults = document.getElementById('no-results');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update button styles
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-wood-600', 'text-white', 'border-wood-600', 'shadow-xl', 'scale-105', 'active');
+        b.classList.add('bg-white', 'text-slate-800', 'border-slate-200');
+      });
+      btn.classList.remove('bg-white', 'text-slate-800', 'border-slate-200');
+      btn.classList.add('bg-wood-600', 'text-white', 'border-wood-600', 'shadow-xl', 'scale-105', 'active');
+
+      // Filter projects
+      let visibleCount = 0;
+      projectCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (card as HTMLElement).style.display = 'block';
+          visibleCount++;
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+
+      // Show/hide no results message
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+</script>

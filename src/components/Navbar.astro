@@ -1,0 +1,179 @@
+---
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Services', path: '/services' },
+  { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-transparent bg-transparent py-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center">
+      <a href="/" class="flex items-center space-x-3 group">
+        <div id="logo-bg" class="p-2.5 rounded-sm transition-colors bg-wood-600 text-white shadow-lg shadow-black/20">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"/>
+            <path d="m18 15 4-4"/>
+            <path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/>
+          </svg>
+        </div>
+        <span id="logo-text" class="font-serif text-3xl font-bold tracking-tight uppercase text-white drop-shadow-md">
+          Summit<span id="logo-accent" class="text-wood-500">Decks</span>
+        </span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-10 items-center">
+        {navLinks.map((link) => (
+          <a
+            href={link.path}
+            class:list={[
+              "nav-link text-base font-bold uppercase tracking-wide transition-all hover:text-wood-500",
+              currentPath === link.path
+                ? "text-wood-500 underline decoration-2 underline-offset-4"
+                : "text-white hover:text-wood-400 drop-shadow-md"
+            ]}
+          >
+            {link.name}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          id="cta-btn"
+          class="px-6 py-3 rounded-sm font-bold text-base uppercase tracking-wider transition-all transform hover:-translate-y-1 bg-wood-600 text-white hover:bg-wood-500 shadow-lg shadow-black/20"
+        >
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button
+          id="mobile-menu-btn"
+          class="p-2 rounded-md text-white"
+        >
+          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+          <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-slate-900 shadow-xl border-t border-slate-800">
+    <div class="px-4 pt-4 pb-8 space-y-2">
+      {navLinks.map((link) => (
+        <a
+          href={link.path}
+          class:list={[
+            "mobile-nav-link block px-4 py-4 rounded-sm text-lg font-bold uppercase tracking-wide border-b border-slate-800",
+            currentPath === link.path
+              ? "text-wood-500 pl-6"
+              : "text-white hover:text-wood-500 hover:pl-6 transition-all"
+          ]}
+        >
+          {link.name}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="block px-4 py-4 mt-6 text-center rounded-sm text-lg font-bold bg-wood-600 text-white hover:bg-wood-700 uppercase tracking-wide"
+      >
+        Get Started
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const logoText = document.getElementById('logo-text');
+  const logoAccent = document.getElementById('logo-accent');
+  const logoBg = document.getElementById('logo-bg');
+  const ctaBtn = document.getElementById('cta-btn');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  let isOpen = false;
+
+  function updateNavbarStyle() {
+    const scrolled = window.scrollY > 20;
+
+    if (scrolled) {
+      navbar?.classList.add('bg-white', 'shadow-md', 'py-4', 'border-slate-100');
+      navbar?.classList.remove('bg-transparent', 'py-6', 'border-transparent');
+      logoText?.classList.add('text-slate-900');
+      logoText?.classList.remove('text-white', 'drop-shadow-md');
+      logoAccent?.classList.add('text-wood-600');
+      logoAccent?.classList.remove('text-wood-500');
+      logoBg?.classList.remove('shadow-lg', 'shadow-black/20');
+      ctaBtn?.classList.add('bg-slate-900', 'hover:bg-wood-600');
+      ctaBtn?.classList.remove('bg-wood-600', 'hover:bg-wood-500', 'shadow-lg', 'shadow-black/20');
+      mobileMenuBtn?.classList.add('text-slate-900');
+      mobileMenuBtn?.classList.remove('text-white');
+
+      navLinks.forEach(link => {
+        if (!link.classList.contains('text-wood-500')) {
+          link.classList.add('text-slate-900');
+          link.classList.remove('text-white', 'hover:text-wood-400', 'drop-shadow-md');
+        }
+      });
+    } else {
+      navbar?.classList.remove('bg-white', 'shadow-md', 'py-4', 'border-slate-100');
+      navbar?.classList.add('bg-transparent', 'py-6', 'border-transparent');
+      logoText?.classList.remove('text-slate-900');
+      logoText?.classList.add('text-white', 'drop-shadow-md');
+      logoAccent?.classList.remove('text-wood-600');
+      logoAccent?.classList.add('text-wood-500');
+      logoBg?.classList.add('shadow-lg', 'shadow-black/20');
+      ctaBtn?.classList.remove('bg-slate-900', 'hover:bg-wood-600');
+      ctaBtn?.classList.add('bg-wood-600', 'hover:bg-wood-500', 'shadow-lg', 'shadow-black/20');
+      mobileMenuBtn?.classList.remove('text-slate-900');
+      mobileMenuBtn?.classList.add('text-white');
+
+      navLinks.forEach(link => {
+        if (!link.classList.contains('text-wood-500')) {
+          link.classList.remove('text-slate-900');
+          link.classList.add('text-white', 'hover:text-wood-400', 'drop-shadow-md');
+        }
+      });
+    }
+  }
+
+  function toggleMobileMenu() {
+    isOpen = !isOpen;
+    mobileMenu?.classList.toggle('hidden', !isOpen);
+    menuIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  }
+
+  window.addEventListener('scroll', updateNavbarStyle);
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+
+  // Initial check
+  updateNavbarStyle();
+</script>

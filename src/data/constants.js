@@ -1,6 +1,4 @@
-import { ProjectImage, ServiceItem, TeamMember, Testimonial } from './types';
-
-export const IMAGES: ProjectImage[] = [
+export const IMAGES = [
   {
     id: '1',
     url: 'https://images.unsplash.com/photo-1679797850019-3d0d8659a695?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVja2luZyUyMGNvbnRyYWN0b3J8ZW58MHx8MHx8fDI%3D',
@@ -66,7 +64,7 @@ export const IMAGES: ProjectImage[] = [
   }
 ];
 
-export const TEAM_IMAGES: TeamMember[] = [
+export const TEAM_IMAGES = [
   {
     id: 't1',
     name: "Marcus Thorne",
@@ -93,14 +91,14 @@ export const TEAM_IMAGES: TeamMember[] = [
   }
 ];
 
-export const SERVICES: ServiceItem[] = [
+export const SERVICES = [
   {
     id: 's1',
     title: 'Custom Wood Decking',
     description: 'We specialize in exotic hardwoods like Ipe and Cumaru, as well as premium Cedar.',
     fullDescription: 'Nothing beats the natural warmth and character of real wood. Our custom wood decking services range from traditional Pressure Treated Pine to premium Western Red Cedar and exotic Brazilian hardwoods like Ipe, Tigerwood, and Cumaru. We hand-select every board to ensure structural integrity and aesthetic beauty.',
     icon: 'TreePine',
-    image: IMAGES[0].url,
+    image: 'https://images.unsplash.com/photo-1679797850019-3d0d8659a695?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVja2luZyUyMGNvbnRyYWN0b3J8ZW58MHx8MHx8fDI%3D',
     features: ['Natural aesthetics', 'Structural versatility', 'Cooler underfoot than plastic', 'Biodegradable'],
     benefits: ['Increases home value', 'Timeless look', 'Can be refinished/stained']
   },
@@ -110,7 +108,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Certified installers for major brands like Trex and TimberTech offering low-maintenance solutions.',
     fullDescription: 'Enjoy your deck without the weekend chores. Composite and PVC decking represent the ultimate in low-maintenance outdoor living. Resistant to fading, staining, scratching, and mold, these high-tech materials mimic the look of wood without the upkeep.',
     icon: 'Layers',
-    image: IMAGES[1].url,
+    image: 'https://images.unsplash.com/photo-1679797870465-b4eda40ead96?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVja2luZyUyMGNvbnRyYWN0b3J8ZW58MHx8MHx8fDI%3D',
     features: ['25-50 Year Warranties', 'Hidden Fasteners', 'Fade & Stain Resistant', 'Made from recycled materials'],
     benefits: ['Zero sanding or staining', 'Splinter-free safety', 'Consistent color']
   },
@@ -118,15 +116,15 @@ export const SERVICES: ServiceItem[] = [
     id: 's3',
     title: 'Patio Covers & Structures',
     description: 'Extend your season with custom pergolas, gazebos, and covered porches.',
-    fullDescription: 'Don’t let the rain or harsh sun drive you indoors. Our custom patio covers, pergolas, and gazebos allow you to enjoy your backyard year-round. From open-air timber frame pergolas to fully roofed structures with heaters and fans, we build vertical features that define your space.',
+    fullDescription: 'Don\'t let the rain or harsh sun drive you indoors. Our custom patio covers, pergolas, and gazebos allow you to enjoy your backyard year-round. From open-air timber frame pergolas to fully roofed structures with heaters and fans, we build vertical features that define your space.',
     icon: 'Umbrella',
-    image: IMAGES[2].url,
+    image: 'https://images.unsplash.com/photo-1679797878543-66c1e502d413?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGVja2luZyUyMGNvbnRyYWN0b3J8ZW58MHx8MHx8fDI%3D',
     features: ['Timber Frame Construction', 'Aluminum Louvered Roofs', 'Integrated Lighting & Heating', 'Custom Shade Sails'],
     benefits: ['Rain protection', 'UV protection', 'Defines outdoor rooms']
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
+export const TESTIMONIALS = [
   {
     id: '1',
     name: 'Sarah Jenkins',

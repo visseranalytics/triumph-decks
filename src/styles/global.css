@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Roboto', sans-serif;
+  --font-serif: 'Oswald', sans-serif;
+
+  --color-wood-50: #fff7ed;
+  --color-wood-100: #ffedd5;
+  --color-wood-200: #fed7aa;
+  --color-wood-300: #fdba74;
+  --color-wood-400: #fb923c;
+  --color-wood-500: #f97316;
+  --color-wood-600: #ea580c;
+  --color-wood-700: #c2410c;
+  --color-wood-800: #9a3412;
+  --color-wood-900: #7c2d12;
+
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.025em;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

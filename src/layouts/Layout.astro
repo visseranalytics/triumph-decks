@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Summit Decks & Design - Premium outdoor living spaces. Quality materials, expert craftsmanship, and timeless design." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>{title} | Summit Decks & Design</title>
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <ChatWidget />
+  </body>
+</html>
