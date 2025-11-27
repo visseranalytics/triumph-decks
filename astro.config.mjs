@@ -1,9 +1,9 @@
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://triumphdecks.com',
+  site: "https://triumph-decks.vercel.app",
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
